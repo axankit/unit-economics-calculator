@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit Economics Calculator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap">
+<meta name="description" content="Unit economics calculator for education, real estate and travel businesses: CAC, contribution, break-even, scenarios and an AI advisor.">
+<link rel="stylesheet" href="css/styles.css">
+
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>Unit Economics Calculator</h1>
+      <p class="sub">Every number comes from fixed formulas. The advisor explains; it never does the maths.</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Industry">
+      <button role="tab" id="tab-education" data-ind="education">Education</button>
+      <button role="tab" id="tab-realestate" data-ind="realestate">Real Estate</button>
+      <button role="tab" id="tab-travel" data-ind="travel">Travel Agency</button>
+    </div>
+    <div class="actions">
+      <button id="btn-csv">Export CSV</button>
+      <button id="btn-pdf" class="primary">Export PDF</button>
+    </div>
+  </header>
+
+  <div class="grid">
+    <form class="panel inputs" id="inputs" aria-label="Assumptions">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+        <h2>Inputs</h2>
+        <div><button type="button" class="link" id="btn-example">Load example</button><button type="button" class="link" id="btn-reset">Reset to zero</button></div>
+      </div>
+      <div id="fields"></div>
+      <p class="note" id="sample-note"></p>
+    </form>
+
+    <main class="results">
+      <section class="verdict" id="verdict" aria-live="polite"></section>
+      <ul class="alerts" id="alerts"></ul>
+      <section class="kpis" id="kpis" aria-label="Key figures"></section>
+
+      <section class="panel">
+        <h2 id="wf-title">Revenue to profit</h2>
+        <p class="note" id="wf-note" style="margin:4px 0 8px"></p>
+        <div class="fig" id="wf"><svg role="img" aria-label="Waterfall from customer collections to net profit"></svg></div>
+      </section>
+
+      <div class="two">
+        <section class="panel"><h2 style="margin-bottom:12px">Cost breakdown</h2><div class="rows" id="costs"></div></section>
+        <section class="panel"><h2 style="margin-bottom:12px">Funnel</h2><div class="rows" id="funnel"></div></section>
+      </div>
+
+      <section class="panel advisor" aria-labelledby="adv-h">
+          <h2 id="adv-h" style="margin-bottom:10px">AI advisor</h2>
+          <div id="advice"></div>
+          <form class="ask" id="ask">
+            <label for="q" class="note" style="flex-basis:100%">Ask a what-if (e.g. "What if CAC rises 20%?", "price drops 10%")</label>
+            <input id="q" placeholder="What if CAC rises 20%?" autocomplete="off">
+            <button type="submit">Ask</button>
+          </form>
+          <div class="answer" id="answer" aria-live="polite"></div>
+          <p class="note" id="ai-status" style="margin-top:8px"></p>
+      </section>
+
+      <section class="panel">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+            <h2>Scenarios</h2>
+            <button type="button" id="btn-save">Save current</button>
+          </div>
+          <div class="scroll"><table id="scen"></table></div>
+          <p class="note" style="margin-top:8px">Worst = volume −20% and CAC +20%. Best = volume +20% and CAC −20%. Base = your inputs now. Saved scenarios stay in this browser.</p>
+      </section>
+
+      <details class="panel">
+        <summary>Formulas and assumptions</summary>
+        <div id="formulas"></div>
+      </details>
+    </main>
+  </div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="js/vendor/jspdf.umd.min.js"></script>
+<script src="js/engine.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
